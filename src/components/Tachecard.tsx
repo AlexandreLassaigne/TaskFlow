@@ -1,0 +1,56 @@
+import { COULEURS } from "@/styles/couleurs";
+import { View, Text, StyleSheet } from "react-native";
+
+interface Task {
+  id: string;
+  title: string;
+  category: string;
+  isDone: boolean;
+}
+
+export default function TacheCard({ item }: { item: Task }) {
+  return (
+    <View style={styles.container}>
+      <View style={styles.taskInfo}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.category}>{item.category}</Text>
+      </View>
+      <Text style={{ ...styles.status, color: item.isDone ? "green" : "grey" }}>
+        {item.isDone ? "Terminé" : "À faire"}
+      </Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    backgroundColor: COULEURS.fond,
+    padding: 10,
+    borderRadius: 10,
+    width: "90%",
+  },
+  taskInfo: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 10,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  category: {
+    backgroundColor: COULEURS.accent,
+    fontSize: 16,
+    fontWeight: "bold",
+    color: COULEURS.texte,
+    padding: 5,
+    borderRadius: 10,
+  },
+  status: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+});
